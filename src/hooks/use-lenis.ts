@@ -30,3 +30,8 @@ export function scrollToId(id: string) {
   if (instance) instance.scrollTo(el, { offset: -24 });
   else el.scrollIntoView({ behavior: "smooth" });
 }
+
+export function scrollToTop() {
+  if (instance) instance.scrollTo(0, { duration: 1.6 });
+  else window.scrollTo({ top: 0, behavior: "smooth" });
+}

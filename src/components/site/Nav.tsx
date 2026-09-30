@@ -4,7 +4,7 @@ import { ArrowUpRight, Menu, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { scrollToId } from "@/hooks/use-lenis";
+import { scrollToId, scrollToTop } from "@/hooks/use-lenis";
 import { Brand } from "./Brand";
 import { EASE } from "@/components/motion/Reveal";
 import { INTRO_DELAY } from "./timing";
@@ -36,15 +36,24 @@ export function Nav() {
     >
       <div
         className={cn(
-          "mx-auto flex max-w-[1400px] items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr] rounded-full px-2 py-2 transition-all duration-500",
-          scrolled ? "bg-card/75 shadow-[0_8px_40px_-12px_hsl(var(--foreground)/0.18)] backdrop-blur-xl" : "bg-transparent",
+          "mx-auto flex items-center justify-between rounded-full px-2 py-2 transition-all duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] md:grid md:grid-cols-[1fr_auto_1fr]",
+          scrolled
+            ? "max-w-[1400px] bg-card/75 shadow-[0_8px_40px_-12px_hsl(var(--foreground)/0.18)] backdrop-blur-xl md:max-w-[720px] lg:max-w-[1010px]"
+            : "max-w-[1400px] bg-transparent",
         )}
       >
         <div className="flex items-center gap-1">
-          <Button variant="ink" size="orb" aria-label="Scroll to top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="hidden md:inline-flex">
-            <Sparkles />
-          </Button>
-          <nav className="ml-4 hidden items-center gap-1 lg:flex">
+          <span
+            className={cn(
+              "hidden overflow-hidden transition-all duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] md:block",
+              scrolled ? "max-w-11 opacity-100 lg:max-w-0 lg:opacity-0" : "max-w-11 opacity-100",
+            )}
+          >
+            <Button variant="ink" size="orb" aria-label="Scroll to top" onClick={scrollToTop}>
+              <Sparkles />
+            </Button>
+          </span>
+          <nav className={cn("hidden items-center gap-1 transition-all duration-700 lg:flex", scrolled ? "ml-1" : "ml-4")}>
             {LINKS.map((l) => (
               <button
                 key={l.id}
@@ -62,9 +71,16 @@ export function Nav() {
         <Brand className="hidden md:flex" />
 
         <div className="flex items-center justify-end gap-2">
-          <Button variant="pill" className="hidden h-11 px-5 sm:inline-flex" onClick={() => go("choose")}>
-            Help me choose
-          </Button>
+          <span
+            className={cn(
+              "hidden overflow-hidden transition-all duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] sm:block",
+              scrolled ? "max-w-0 opacity-0" : "max-w-[160px] opacity-100",
+            )}
+          >
+            <Button variant="pill" className="h-11 whitespace-nowrap px-5" onClick={() => go("choose")}>
+              Help me choose
+            </Button>
+          </span>
           <Button variant="pill" size="xl" className="hidden h-11 gap-3 pl-5 pr-1.5 md:inline-flex" onClick={() => go("rag")}>
             Get started
             <span className="grid h-8 w-8 place-items-center rounded-full bg-secondary text-secondary-foreground">
