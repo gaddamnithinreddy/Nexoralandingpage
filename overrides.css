@@ -5,6 +5,27 @@
   overflow: hidden;
 }
 
+body {
+  overflow-x: hidden;
+}
+
+.hero-copy {
+  position: relative;
+}
+
+.hero-copy::after {
+  content: "STUDY / WEB / DONE";
+  display: block;
+  width: max-content;
+  margin-top: 46px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-family: "DM Mono", monospace;
+  font-size: 9px;
+  letter-spacing: .08em;
+}
+
 .hero-visual::before {
   content: "N";
   position: absolute;
@@ -90,6 +111,34 @@
   box-shadow: 6px 6px 0 #f44e46;
 }
 
+.cta,
+.workspace {
+  transition: background-color .2s ease, color .2s ease, transform .2s ease;
+}
+
+.cta:hover {
+  background: var(--coral);
+  color: var(--ink);
+  transform: translateY(-2px);
+}
+
+.workspace:hover {
+  background: #e7e7e2;
+}
+
+.workspace:hover .open {
+  color: var(--coral);
+  border-bottom-color: var(--coral);
+}
+
+.cta:focus-visible,
+.workspace:focus-visible,
+.nav-link:focus-visible,
+.brand:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 4px;
+}
+
 .label-top {
   left: 18px;
 }
@@ -122,5 +171,51 @@
 
   .label-bottom {
     right: 10px;
+  }
+
+  .hero-copy::after {
+    margin-top: 34px;
+  }
+
+  .visual-statement {
+    left: 12px;
+    bottom: 12px;
+    font-size: 8px;
+  }
+
+  .visual-index {
+    right: 12px;
+    top: 12px;
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 420px) {
+  h1 {
+    font-size: clamp(44px, 13.4vw, 56px);
+  }
+
+  .hero-visual {
+    height: 355px;
+  }
+
+  .hero-visual img {
+    width: 124%;
+    height: 124%;
+    left: -12%;
+    bottom: -12%;
+  }
+
+  .visual-label {
+    padding: 8px 9px;
+    font-size: 8px;
+  }
+
+  .label-bottom {
+    bottom: 10px;
+  }
+
+  .hero-copy::after {
+    font-size: 8px;
   }
 }
