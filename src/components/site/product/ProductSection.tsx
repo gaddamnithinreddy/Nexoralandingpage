@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import type { Product } from "@/data/products";
 import { VideoFrame } from "./VideoFrame";
 import { StepCard } from "./StepCard";
+import { MobileAutoCarousel } from "@/components/site/MobileAutoCarousel";
 
 const ICONS: Record<Product["id"], LucideIcon[]> = {
   rag: [Upload, MessageSquareText, GraduationCap],
@@ -81,8 +82,15 @@ export function ProductSection({ product, dark = false }: ProductSectionProps) {
           ))}
         </div>
 
-        {/* steps */}
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
+        {/* steps — swipe on small screens, three-up on desktop */}
+        <div className="mt-8 md:hidden">
+          <MobileAutoCarousel
+            label="Swipe through the steps"
+            itemClassName="basis-[88%] pl-3"
+            items={product.steps.map((s, i) => <StepCard key={s.title} step={s} index={i} icon={ICONS[product.id][i]} />)}
+          />
+        </div>
+        <div className="mt-8 hidden gap-4 md:grid md:grid-cols-3">
           {product.steps.map((s, i) => (
             <StepCard key={s.title} step={s} index={i} icon={ICONS[product.id][i]} />
           ))}

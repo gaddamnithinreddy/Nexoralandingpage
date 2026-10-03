@@ -24,7 +24,7 @@ export function VideoFrame({ product }: { product: Product }) {
     <motion.div
       ref={ref}
       style={{ scale, borderRadius: radius }}
-      className="relative aspect-[4/5] w-full overflow-hidden bg-stage text-stage-foreground shadow-[0_60px_120px_-40px_hsl(var(--foreground)/0.45)] sm:aspect-video"
+      className="relative aspect-video w-full overflow-hidden bg-stage text-stage-foreground shadow-[0_60px_120px_-40px_hsl(var(--foreground)/0.45)]"
     >
       {/* chrome */}
       <div className="absolute inset-x-0 top-0 z-20 flex items-center justify-between px-5 py-4 font-mono text-[10px] uppercase tracking-[0.2em] text-stage-muted md:px-7 md:py-5 md:text-[11px]">
@@ -45,12 +45,13 @@ export function VideoFrame({ product }: { product: Product }) {
             muted
             loop
             playsInline
-            className="absolute inset-0 h-full w-full object-cover"
+            preload="metadata"
+            className="absolute inset-0 h-full w-full object-contain lg:object-cover"
           />
           <button
             onClick={toggleSound}
             aria-label={muted ? "Turn sound on" : "Turn sound off"}
-            className="absolute bottom-5 right-5 z-20 flex items-center gap-2 rounded-full bg-stage/70 px-4 py-2.5 text-xs font-medium backdrop-blur-md transition-colors hover:bg-stage"
+            className="absolute bottom-3 right-3 z-20 flex items-center gap-2 rounded-full bg-stage/70 px-3 py-2 text-[11px] font-medium backdrop-blur-md transition-colors hover:bg-stage sm:bottom-5 sm:right-5 sm:px-4 sm:py-2.5 sm:text-xs"
           >
             {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
             {muted ? "Sound off" : "Sound on"}

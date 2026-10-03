@@ -5,6 +5,7 @@ import { Reveal, EASE } from "@/components/motion/Reveal";
 import { SplitWords } from "@/components/motion/SplitWords";
 import { PRODUCTS, type Product } from "@/data/products";
 import { cn } from "@/lib/utils";
+import { MobileAutoCarousel } from "@/components/site/MobileAutoCarousel";
 
 function ChoiceCard({ product, dark, index }: { product: Product; dark: boolean; index: number }) {
   const ref = useRef<HTMLAnchorElement>(null);
@@ -83,7 +84,13 @@ export function Chooser() {
           <p className="max-w-xs text-foreground/70">Pick the sentence that sounds like you. That's your workspace — no setup, no guesswork.</p>
         </Reveal>
       </div>
-      <div className="grid gap-4 md:grid-cols-2">
+      <MobileAutoCarousel
+        label="Swipe to compare"
+        delay={5600}
+        itemClassName="basis-[91%] pl-3"
+        items={PRODUCTS.map((p, i) => <ChoiceCard key={p.id} product={p} dark={i === 1} index={i} />)}
+      />
+      <div className="hidden gap-4 md:grid md:grid-cols-2">
         {PRODUCTS.map((p, i) => (
           <ChoiceCard key={p.id} product={p} dark={i === 1} index={i} />
         ))}

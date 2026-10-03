@@ -36,7 +36,7 @@ export const PRODUCTS: Product[] = [
     summary:
       "Drop in course notes, papers or books. A team of AI models reads them for you and answers from your own material — with summaries, notes, explanations and practice questions on demand.",
     image: "/assets/nexora-rag.webp",
-    video: undefined,
+    video: "/videos/browser-launch-film.mp4",
     href: "https://agent.nexorabuilds.in/",
     cta: "Open Study workspace",
     steps: [
@@ -58,7 +58,7 @@ export const PRODUCTS: Product[] = [
     summary:
       "Tell the agent the result you want. It opens pages, clicks, types and moves through multi-step web flows for you — while you stay in charge of the outcome.",
     image: "/assets/nexora-browser.webp",
-    video: undefined,
+    video: "/videos/rag-launch-film.mp4",
     href: "https://browser.nexorabuilds.in/",
     cta: "Open Browser workspace",
     steps: [
